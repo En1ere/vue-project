@@ -1,4 +1,4 @@
-export interface routeItem {
+export interface RouteItem {
     path: string,
     component: any,
     name: string

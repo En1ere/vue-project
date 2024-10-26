@@ -1,13 +1,17 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import Index from "../../pages/Index.vue";
-import Games from "../../pages/Games.vue";
 import About from "../../pages/About.vue";
-import {routeItem} from "./types.ts";
+import Jokes from "../../pages/Jokes.vue";
+import Games from "../../pages/Games.vue";
+import Game from "../../pages/Game.vue";
+import {RouteItem} from "./types.ts";
 
-export const routes:routeItem[] = [
+export const routes:RouteItem[] = [
     { path: '/', component: Index, name: "Home" },
-    { path: '/games', component: Games, name: "Games" },
     { path: '/about', component: About, name: "About" },
+    { path: '/jokes', component: Jokes, name: "Jokes" },
+    { path: '/games', component: Games, name: "Games" },
+    { path: '/games/:id', component: Game, name: "Game" },
 ]
 
 export const router = createRouter({

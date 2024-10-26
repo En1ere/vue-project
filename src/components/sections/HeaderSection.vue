@@ -1,8 +1,5 @@
 <template>
     <header class="header">
-        <div>
-            Some header
-        </div>
         <breadcrumbs />
     </header>
 </template>

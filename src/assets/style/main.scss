@@ -1,12 +1,36 @@
+@font-face {
+    font-family: "Almarai";
+    src: url("../fonts/Almarai-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Almarai-bold";
+    src: url("../fonts/Almarai-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
 body {
     background: $defaultBackground;
     color: $defaultBlackFont;
+    font-family: Almarai, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 main {
     margin: 0 auto;
+    height: calc(100vh - 200px);
+    width: 100%;
+    padding: 0 16px;
 }
 
 .at-theme-light {
     display: none !important;
+}
+
+h1 {
+    font-size: 56px;
+    font-weight: 700;
 }

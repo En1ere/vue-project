@@ -1,8 +1,13 @@
 <template>
     <nav class="breadcrumbs">
-        <RouterLink class="link" v-for="route in filteredRoutes" :key="route.path" :to="route.path">
-            {{ route.name }}
-        </RouterLink>
+        <template v-for="route in filteredRoutes" :key="route.path">
+            <span v-if="isCurrentRoute(route)" class="link active">
+                {{ route.name }}
+            </span>
+            <RouterLink v-else :to="route.path" class="link">
+                {{ route.name }}
+            </RouterLink>
+        </template>
     </nav>
 </template>
 
@@ -15,9 +20,14 @@ export default {
             return this.$router.currentRoute.value.path;
         },
         filteredRoutes() {
-            return routes.filter(route => route.path !== this.currentPath);
+            return routes.filter(route => route.name !== "Game");
         }
     },
+    methods: {
+        isCurrentRoute(route) {
+            return route.path === this.currentPath;
+        }
+    }
 }
 </script>
 
@@ -27,8 +37,14 @@ export default {
     }
     .link {
         color: $defaultWhiteFont;
+        font-size: 24px;
+
         &:not(:last-child) {
             margin-right: 20px;
+        }
+
+        &.active {
+            border-bottom: 4px solid $defaultWhiteFont;
         }
     }
 </style>
