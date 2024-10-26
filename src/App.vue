@@ -1,21 +1,27 @@
 <template>
-    <div>
-        sas
+    <div class="content-wrapper">
+        <header-section />
+        <RouterView />
+        <footer-section />
     </div>
 </template>
 
 <script>
-
+import HeaderSection from "~/components/sections/HeaderSection.vue";
+import FooterSection from "~/components/sections/FooterSection.vue";
 export default {
     name: "App",
-    mounted() {
-        alert("dorou")
-    }
+    components: {FooterSection, HeaderSection},
 }
 </script>
 
-<style scoped lang="scss">
-div {
-  background: #876CA8;
+
+<style lang="scss">
+.content-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 </style>
