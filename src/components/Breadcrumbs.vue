@@ -25,7 +25,10 @@ export default {
     .breadcrumbs {
         display: flex;
     }
-    .link:not(:last-child) {
-        margin-right: 20px;
+    .link {
+        color: $defaultWhiteFont;
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
     }
 </style>
