@@ -45,7 +45,7 @@ export default {
         display: flex;
         flex-direction: row;
         height: 100%;
-        row-gap: 26px;
+        gap: 26px;
     }
     &__copyright {
         display: flex;

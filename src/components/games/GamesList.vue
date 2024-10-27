@@ -1,15 +1,19 @@
 <template>
     <div class="games-list">
-        <RouterLink class="games-list__item" v-for="game in gamesList" :key="game.id" :to="game.path">
-            {{ game.name }}
-        </RouterLink>
+        <default-button v-for="game in gamesList" :key="game.id" :no-padding="true">
+            <RouterLink class="games-list__item" :to="game.path">
+                {{ game.name }}
+            </RouterLink>
+        </default-button>
     </div>
 </template>
 
 <script>
 import {gamesList} from "~/service/games"
+import DefaultButton from "~/components/common/DefaultButton.vue";
 export default {
     name: "GamesList",
+    components: {DefaultButton},
     data() {
         return {
             gamesList: [],
@@ -18,17 +22,21 @@ export default {
     created() {
         this.gamesList = gamesList;
     },
-    mounted() {
-        console.log(this.$router.getRoutes())
-    }
 }
 </script>
 
 <style scoped lang="scss">
     .games-list {
         display: flex;
-        &__item {
+        gap: 20px;
 
+        &__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            padding: 0 20px;
         }
     }
 </style>
