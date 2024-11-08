@@ -1,0 +1,33 @@
+.snake-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.snake-canvas-wrapper {
+    background-color: $defaultBlackColor;
+    border-radius: $defaultBorderRadius;
+    border: 10px solid $defaultBlackColor;
+    box-shadow: $defaultShadow;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.2'%3E%3Ccircle cx='8' cy='8' r='4' fill='%23525053'/%3E%3C/g%3E%3C/svg%3E%0A");
+}
+
+#snake-canvas {
+    display: block;
+    border-radius: 5px;
+}
+
+.snake-score {
+    background-color: $defaultBlackColor;
+    color: firebrick;
+    width: 300px;
+    height: 100px;
+    margin: 0 0 0 100px;
+    box-shadow: $defaultShadow;
+    border: 10px solid $defaultBlackColor;
+    border-radius: $defaultBorderRadius;
+    font-size: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

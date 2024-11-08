@@ -4,3 +4,7 @@ export interface Game {
     path: string
 }
 
+export const GAMES = {
+    SNAKE: "Snake",
+    HANGMAN: "Hangman"
+}

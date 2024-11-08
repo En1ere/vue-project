@@ -1,13 +1,13 @@
-import {Game} from "./types.ts";
+import {Game, GAMES} from "./types.ts";
 
 const snake:Game = {
     id: 1,
-    name: "Snake",
+    name: GAMES.SNAKE,
     path: "/Games/Snake"
 }
 const hangman:Game = {
     id: 2,
-    name: "Hangman",
+    name: GAMES.HANGMAN,
     path: "/Games/Hangman"
 }
 
