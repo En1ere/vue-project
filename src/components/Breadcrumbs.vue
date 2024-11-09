@@ -37,10 +37,10 @@ export default {
     }
     .link {
         color: $defaultWhiteFont;
-        font-size: 24px;
+        font-size: 30px;
 
         &:not(:last-child) {
-            margin-right: 20px;
+            margin-right: 40px;
         }
 
         &.active {

@@ -33,7 +33,6 @@ export default {
                 console.log(`Can't find a game ${this.currentGame}`);
                 return;
             }
-            console.log(this.currentGame);
         },
         checkCurrentGame() {
             const routeName = this.$route.path.split("/")[2];
@@ -47,8 +46,7 @@ export default {
         },
         initSnake() {
             const Snake = new SnakeGame();
-            Snake.initRender();
-            console.log(Snake)
+            Snake.initGame();
         }
     },
     mounted() {

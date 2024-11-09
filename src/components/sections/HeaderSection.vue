@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header class="header" :class="{'game': isGamePage}">
         <breadcrumbs />
     </header>
 </template>
@@ -9,6 +9,11 @@ import Breadcrumbs from "~/components/Breadcrumbs.vue";
 export default {
     name: "HeaderSection",
     components: {Breadcrumbs},
+    computed: {
+        isGamePage() {
+            return this.$route.name === "Game"
+        }
+    }
 }
 </script>
 
@@ -21,5 +26,9 @@ export default {
         align-items: center;
         justify-content: center;
         color: $defaultWhiteFont;
+
+        &.game {
+            background: $defaultGameViolet;
+        }
     }
 </style>
