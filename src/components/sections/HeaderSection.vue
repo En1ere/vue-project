@@ -26,9 +26,5 @@ export default {
         align-items: center;
         justify-content: center;
         color: $defaultWhiteFont;
-
-        &.game {
-            background: $defaultGameViolet;
-        }
     }
 </style>

@@ -3,9 +3,7 @@
         <h1 class="game__title">
             {{ currentGame || "Loading game..." }}
         </h1>
-        <section class="game-content">
-
-        </section>
+        <section class="game-content" />
     </main>
 </template>
 
@@ -31,7 +29,6 @@ export default {
             }
             else {
                 console.log(`Can't find a game ${this.currentGame}`);
-                return;
             }
         },
         checkCurrentGame() {

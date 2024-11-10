@@ -36,8 +36,7 @@ export default {
         transition: all 0.2s;
 
         &:hover {
-            background: $defaultWhiteFont;
-            color: $defaultViolet;
+            background: $defaultButtonHover;
         }
 
         &.no-padding {

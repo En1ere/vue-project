@@ -11,6 +11,20 @@
     font-weight: normal;
 }
 
+* {
+    transition: all 0.2s;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: $defaultBackground;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $defaultBlackFont;
+    }
+}
+
 body {
     background: $defaultBackground;
     color: $defaultBlackFont;

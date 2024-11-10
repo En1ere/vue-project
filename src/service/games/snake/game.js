@@ -40,20 +40,6 @@ export default class SnakeGame {
         this.reqId = null;
     }
 
-    //
-    gameLoop(ctx) {
-        this.tt = requestAnimationFrame( () => this.gameLoop(ctx) );
-        if ( ++this.config.step < this.config.maxStep) {
-            return;
-        }
-        this.config.step = 0;
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.renderApple();
-        this.renderSnake();
-    }
-
-
     // snake ______________________________________________________________________________
 
     resetApple() {
@@ -142,17 +128,37 @@ export default class SnakeGame {
             }
         })
     }
+    startListeners() {
+        const startButton = document.querySelector(".start-game-button");
+        const endGameButton = document.querySelector(".end-game-button");
+        startButton.addEventListener("click", this.startGame.bind(this));
+        endGameButton.addEventListener("click", this.resetGame.bind(this));
+    }
+    showEndGameModal() {
+        document.querySelector("main").classList.add("blurred");
+        document.querySelector("body").classList.add("overflow");
+        document.querySelector(".end-game-modal-wrapper").classList.add("visible");
+        document.querySelector(".end-game-modal-text").innerHTML = `Game over!<br>Your score: ${this.score}`;
+        document.querySelector(".end-game-button").innerHTML = "Close";
+    }
+    removeClasses() {
+        document.querySelector("main").classList.remove("blurred");
+        document.querySelector("body").classList.remove("overflow");
+        document.querySelector(".end-game-modal-wrapper").classList.remove("visible");
+    }
     resetGame() {
+        this.removeClasses();
+        this.context.clearRect(0, 0, this.config.gameMapSettings.mapSize.x, this.config.gameMapSettings.mapSize.y);
         this.score = 0;
         this.scoreStep = 10;
-        this.canvas = null;
-        this.context = null;
         this.reqId = null;
         this.resetApple();
         this.resetSnake();
+        this.updateScore();
     }
     endGame() {
-        cancelAnimationFrame(this.tt)
+        cancelAnimationFrame(this.tt);
+        this.showEndGameModal();
     }
 
     // render _____________________________________________________________________________
@@ -171,14 +177,26 @@ export default class SnakeGame {
         })
 
         parentBlock.insertAdjacentElement("beforeend", renderingElement);
+        return renderingElement;
     }
     renderLayout() {
-        this.renderElement(".game-content", "div", {}, ["snake-wrapper"])
+        this.renderElement(".game-content", "div", {}, ["snake-wrapper"]);
+        this.renderElement(".snake-wrapper", "div", {}, ["game-info"]);
     }
     renderScore() {
-        this.renderElement(".snake-wrapper", "div", {}, ["snake-score"]);
+        this.renderElement(".game-info", "div", {}, ["snake-score"]);
         this.scoreBlock = document.querySelector(".snake-score");
         this.scoreBlock.insertAdjacentText("beforeend", this.score);
+    }
+    renderButtons() {
+        const startButton = this.renderElement(".game-info", "button", {}, ["start-game-button"]);
+        startButton.innerHTML = "Start Game";
+    }
+    renderEndGameModal() {
+        this.renderElement(".game", "div", {}, ["end-game-modal-wrapper"]);
+        this.renderElement(".end-game-modal-wrapper", "div", {}, ["end-game-modal"]);
+        this.renderElement(".end-game-modal", "div", {}, ["end-game-modal-text"]);
+        this.renderElement(".end-game-modal", "button", {}, ["end-game-button"]);
     }
     renderCanvas() {
         this.renderElement(".snake-wrapper", "div", {}, ["snake-canvas-wrapper"]);
@@ -217,6 +235,7 @@ export default class SnakeGame {
 
             if(this.snake.bodyLength > 3 && this.snake.segments.indexOf(segment) > 0 && segment.x === this.snake.x && segment.y === this.snake.y) {
                 this.endGame();
+                return;
             }
         }
 
@@ -236,19 +255,36 @@ export default class SnakeGame {
     initRender() {
         this.renderLayout();
         this.renderScore();
+        this.renderButtons();
+        this.renderEndGameModal();
         this.renderCanvas();
 
         this.canvas = document.querySelector("#snake-canvas");
         this.context = this.canvas.getContext("2d");
+        this.startListeners();
     }
 
     // init ______________________________________________________________________________
 
+    gameLoop(ctx) {
+        this.tt = requestAnimationFrame( () => this.gameLoop(ctx) );
+        if ( ++this.config.step < this.config.maxStep) {
+            return;
+        }
+        this.config.step = 0;
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.renderApple();
+        this.renderSnake();
+    }
+    startGame() {
+        this.initControls();
+        this.setAppleCoords();
+        this.reqId = requestAnimationFrame( () => this.gameLoop(this) );
+    }
     initGame() {
         this.resetSnake();
         this.resetApple();
         this.initRender();
-        this.initControls();
-        this.reqId = requestAnimationFrame( () => this.gameLoop(this) );
     }
 }

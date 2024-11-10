@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer">
+    <footer class="footer" :class="{'game': isGamePage}">
         <div class="footer__copyright">
             © 2024 Roy Alexander
         </div>
@@ -19,6 +19,9 @@ import {socialsList} from "~/service/socials";
 export default {
     name: "FooterSection",
     computed: {
+        isGamePage() {
+            return this.$route.name === "Game"
+        },
         getSocials() {
             return socialsList;
         }
